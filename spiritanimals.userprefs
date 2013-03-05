@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sprites\AnimatedSprite.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Scripts\General Scripts\DeathZone.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="42" Column="4" />
+      <File FileName="Assets\Standard Assets\Scripts\General Scripts\DeathZone.js" Line="21" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
