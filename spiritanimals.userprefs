@@ -2,11 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sprites\AnimatedSprite.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="11" Column="1" />
+      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="42" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Michel\Documents\GitHub\spiritanimals\Assets\Plugins\Sprite.cs" line="286" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

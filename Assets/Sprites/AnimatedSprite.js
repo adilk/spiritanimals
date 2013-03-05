@@ -22,16 +22,11 @@ class SpriteAnimation
 	var fps : float = 30.0f;
 }
 
-function DebugAnim()
-{
-	Debug.Log("Anim Done");
-}
-
 function Start () {
 	//get the actual SpriteManager component
-	var mySpriteManager:SpriteManager = spriteManager.GetComponent("LinkedSpriteManager") as SpriteManager;
+	var spriteManager:SpriteManager = spriteManager.GetComponent("LinkedSpriteManager") as SpriteManager;
 	//initialize the sprite
-	sprite = mySpriteManager.AddSprite(this.gameObject, spriteWorldWidth, spriteWorldHeight, 
+	sprite = spriteManager.AddSprite(this.gameObject, spriteWorldWidth, spriteWorldHeight, 
 		position.x, position.y, dimensions.x, dimensions.y, false);
 		
 	for (var anim : SpriteAnimation in animationInfo)
@@ -43,16 +38,19 @@ function Start () {
 		uvAnim.loopReverse = anim.loopReverse;
 		uvAnim.framerate = anim.fps;
 		
-		uvAnim.BuildUVAnim(anim.start, dimensions, anim.cols, anim.rows, anim.totalCells, anim.fps);
+		uvAnim.BuildUVAnim(spriteManager.PixelCoordToUVCoord(anim.start), spriteManager.PixelSpaceToUVSpace(dimensions), 
+			anim.cols, anim.rows, anim.totalCells, anim.fps);
 		sprite.AddAnimation(uvAnim);
 	}
-	sprite.SetAnimCompleteDelegate(DebugAnim);
 }
 
 function Update () {
 	//Animation Testing code
-	if ( Input.GetKey(KeyCode.UpArrow) )
+	if ( Input.GetKeyDown(KeyCode.UpArrow) )
+	{
 		this.SendMessage("PlayAnimation", "testAnimation");
+		Debug.Log("Animate");
+	}
 }
 
 function PlayAnimation(animationName : String)
