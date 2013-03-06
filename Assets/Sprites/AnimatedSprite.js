@@ -45,12 +45,6 @@ function Start () {
 }
 
 function Update () {
-	//Animation Testing code
-	if ( Input.GetKeyDown(KeyCode.UpArrow) )
-	{
-		this.SendMessage("PlayAnimation", "testAnimation");
-		Debug.Log("Animate");
-	}
 }
 
 function SetDrawLayer(layer : int)
