@@ -53,6 +53,11 @@ function Update () {
 	}
 }
 
+function SetDrawLayer(layer : int)
+{
+	sprite.SetDrawLayer(layer);
+}
+
 function PlayAnimation(animationName : String)
 {
 	if ( animationName == "" )
@@ -61,4 +66,24 @@ function PlayAnimation(animationName : String)
 		return;
 	}
 	sprite.PlayAnim(animationName);
+}
+
+function PlayAnimationInReverse(animationName : String)
+{
+	if ( animationName == "" )
+	{
+		Debug.Log(sprite.index + " : PlayAnimation: You must pass the name of the animation to play.");
+		return;
+	}
+	sprite.PlayAnimInReverse(animationName);
+}
+
+function PauseAnimation()
+{
+	sprite.PauseAnim();
+}
+
+function UnPauseAnimation()
+{
+	sprite.UnpauseAnim();
 }
