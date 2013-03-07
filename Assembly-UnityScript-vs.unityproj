@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Player Scripts\CharacterMotor.js" />
+     <Compile Include="Assets\Player Scripts\PlatformInputController.js" />
      <Compile Include="Assets\Player Scripts\SideScroller.js" />
      <Compile Include="Assets\Sprites\AnimatedSprite.js" />
  <Reference Include="Assembly-UnityScript-firstpass">
