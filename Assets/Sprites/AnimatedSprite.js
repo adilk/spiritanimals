@@ -28,7 +28,8 @@ function Start () {
 	//initialize the sprite
 	sprite = spriteManager.AddSprite(this.gameObject, spriteWorldWidth, spriteWorldHeight, 
 		position.x, position.y, dimensions.x, dimensions.y, false);
-		
+	
+	//Create all animations
 	for (var anim : SpriteAnimation in animationInfo)
 	{
 		var uvAnim : UVAnimation = new UVAnimation();

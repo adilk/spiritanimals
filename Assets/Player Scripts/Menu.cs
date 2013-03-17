@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/*
+ * Defines a main menu consisting of an image which fades
+ * to white and loads the first level on mouse click.
+ */
+[RequireComponent (typeof (Camera))]
 public class Menu : MonoBehaviour {
 	public Texture menuTexture;
 	public Texture whiteTexture;
