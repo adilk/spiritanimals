@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Player Scripts\Menu.cs" />
      <Compile Include="Assets\Player Scripts\PlayerAnimation.cs" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
