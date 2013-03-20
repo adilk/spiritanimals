@@ -3,6 +3,7 @@
 var spriteManager : GameObject; //reference to the SpriteManager gameObject
 var spriteWorldWidth : float = 1.0f;
 var spriteWorldHeight : float = 1.0f;
+var depth : int = 0;
 var position : Vector2 = Vector2(0,0); //The uv coodinates of the base sprite when unanimated
 var dimensions : Vector2 = Vector2(0,0); //The dimensions of the sprite, which applies to all frames
 var animationInfo : SpriteAnimation[];
@@ -43,6 +44,8 @@ function Start () {
 			anim.cols, anim.rows, anim.totalCells, anim.fps);
 		sprite.AddAnimation(uvAnim);
 	}
+	
+	sprite.SetDrawLayer(depth);
 }
 
 function Update () {

@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PushObject.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sprites\AnimatedSprite.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="1" Column="1" />
+      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="48" Column="29" />
       <File FileName="Assets\PushObject.js" Line="2" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
