@@ -348,7 +348,7 @@ private function ApplyInputVelocityChange (velocity : Vector3) {
 	var desiredVelocity : Vector3;
 	if (grounded && TooSteep()) {
 		// The direction we're sliding in
-		desiredVelocity = Vector3(groundNormal.x, 0, groundNormal.z).normalized;
+		desiredVelocity = Vector3(0, groundNormal.y, groundNormal.z).normalized;
 		// Find the input movement direction projected onto the sliding direction
 		var projectedMoveDir = Vector3.Project(inputMoveDirection, desiredVelocity);
 		// Add the sliding direction, the spped control, and the sideways control vectors

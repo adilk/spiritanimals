@@ -1,15 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sprites\AnimatedSprite.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="48" Column="29" />
-      <File FileName="Assets\PushObject.js" Line="2" Column="18" />
+      <File FileName="Assets\Player Scripts\PlatformInputController.js" Line="10" Column="2" />
+      <File FileName="Assets\Plugins\LinkedSpriteManager.cs" Line="29" Column="2" />
+      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="355" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\Michel\Documents\GitHub\spiritanimals\Assets\Plugins\Sprite.cs" line="286" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
