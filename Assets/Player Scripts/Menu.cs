@@ -6,6 +6,7 @@ using System.Collections;
  * to white and loads the first level on mouse click.
  */
 [RequireComponent (typeof (Camera))]
+[RequireComponent (typeof(AudioSource))]
 public class Menu : MonoBehaviour {
 	public Texture menuTexture;
 	public Texture whiteTexture;
@@ -37,11 +38,12 @@ public class Menu : MonoBehaviour {
 		if (Input.GetMouseButton(0))
 		{
 			fade = true;
+			audio.Play();
 		}
 		
 		if ( fade )
 		{
-			alphaFadeValue += Mathf.Clamp01(Time.deltaTime / 3);
+			alphaFadeValue += Mathf.Clamp01(Time.deltaTime / 8);
     		GUI.color = new Color(1, 1, 1, alphaFadeValue);
     		GUI.DrawTexture( new Rect(0, 0, Screen.width, Screen.height ), whiteTexture );
 		}
