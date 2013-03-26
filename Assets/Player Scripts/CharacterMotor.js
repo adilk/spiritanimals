@@ -4,8 +4,11 @@
 
 // Does this script currently respond to input?
 var canControl : boolean = true;
-
+private var pulling : boolean;
+private var movable : GameObject;
+private var myJoint : ConfigurableJoint;
 var useFixedUpdate : boolean = true;
+//private var rockAgainstWall : boolean = false;
 
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
@@ -181,6 +184,18 @@ function Awake () {
 }
 
 private function UpdateFunction () {
+	if((pulling && !Input.GetButton("Fire1")) || (pulling && IsJumping()))
+		{
+		
+//			movable.transform.parent = null;
+//			movable.rigidbody.isKinematic = false;
+//			movable = null;
+//			Destroy(GetComponent(HingeJoint));
+			pulling = false;
+			Physics.IgnoreCollision(this.collider, myJoint.connectedBody.collider, false);
+			Destroy(GetComponent(ConfigurableJoint));
+			Destroy (myJoint);
+		}
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
@@ -306,7 +321,6 @@ private function UpdateFunction () {
         movingPlatform.activeGlobalRotation = tr.rotation;
         movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
 	}
-	
 	tr.position.x = 0;
 }
 
@@ -465,7 +479,69 @@ private function ApplyGravityAndJumping (velocity : Vector3) {
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit) {
-	if (hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0) {
+	
+	
+	if(!IsJumping() && !myJoint && Input.GetButton("Fire1") && hit.gameObject.tag == "Movable" && (hit.controller.collisionFlags & CollisionFlags.Sides)){
+//			print(hit.gameObject.tag);
+//			movable = hit.gameObject;
+//			movable.transform.parent = this.transform;
+//			movable.rigidbody.isKinematic = true;
+			pulling = true;
+//			gameObject.AddComponent ("HingeJoint");
+//			myJoint = GetComponent(HingeJoint) ;
+//			var limits : JointLimits;
+//   			limits.min = 0;
+//    		limits.minBounce = 0;
+//    		limits.max = 5;
+//    		limits.maxBounce = 0;
+//    		myJoint.limits = limits;
+    		
+    
+    
+    		gameObject.AddComponent ("ConfigurableJoint");
+			myJoint = GetComponent(ConfigurableJoint) ;
+			myJoint.connectedBody = hit.rigidbody; 
+			
+			myJoint.anchor = new Vector3(0, 0, 0);
+			myJoint.targetPosition = new Vector3(0, 0, 0);
+			
+			myJoint.xMotion = ConfigurableJointMotion.Locked;
+			myJoint.yMotion = ConfigurableJointMotion.Free;
+			myJoint.zMotion = ConfigurableJointMotion.Locked;		
+			
+			myJoint.angularXMotion = ConfigurableJointMotion.Locked;
+			myJoint.angularYMotion = ConfigurableJointMotion.Locked;
+			myJoint.angularZMotion = ConfigurableJointMotion.Locked;
+				
+			myJoint.zDrive.mode = JointDriveMode.Velocity;
+			myJoint.zDrive.positionSpring = 0;
+			myJoint.zDrive.positionDamper = 10;
+			myJoint.zDrive.maximumForce = 20;
+			
+			
+//			var limits : SoftJointLimit;
+//			myJoint.linearLimit.limit = 5;
+
+//			var myJointDrive : JointDrive = new JointDrive();
+//    	    myJointDrive.mode = JointDriveMode.Position;
+//    	    myJointDrive.positionSpring = 45;
+//    	    myJointDrive.maximumForce = 45;
+//    	    myJoint.rotationDriveMode = RotationDriveMode.XYAndZ;
+//    	    myJoint.angularYZDrive = myJointDrive;
+    	    
+    	    
+//    	    var drive : JointDrive = JointDrive();
+//      	  	drive.positionSpring = 50;
+//      	  	drive.mode = JointDriveMode.Position;
+//        
+//      		myJoint.yDrive = drive;
+      	  
+        
+			
+			Physics.IgnoreCollision(this.collider, hit.collider);
+		}
+
+	else if (hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0) {
 		if ((hit.point - movement.lastHitPoint).sqrMagnitude > 0.001 || lastGroundNormal == Vector3.zero)
 			groundNormal = hit.normal;
 		else
@@ -475,6 +551,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 		movement.hitPoint = hit.point;
 		movement.frameVelocity = Vector3.zero;
 	}
+	
 }
 
 private function SubtractNewPlatformVelocity () {
