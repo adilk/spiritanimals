@@ -2,7 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FoxSpawnScript.js">
     <Files>
-      <File FileName="Assets\FoxSpawnScript.js" Line="38" Column="24" />
+      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="3" Column="16" />
+      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="354" Column="34" />
+      <File FileName="Assets\Player Scripts\PlatformInputController.js" Line="15" Column="45" />
+      <File FileName="Assets\Player Scripts\PlayerAnimation.cs" Line="53" Column="22" />
+      <File FileName="Assets\Player Scripts\Menu.cs" Line="9" Column="1" />
+      <File FileName="Assets\FoxSpawnScript.js" Line="36" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

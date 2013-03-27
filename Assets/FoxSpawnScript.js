@@ -33,6 +33,8 @@ function Spawn(){
  // Disable player movement
  player.GetComponent(CharacterMotor).canControl = false;
  
+ audio.Play();
+ 
  // Fox Dialouge
  var text_instance : Transform = Instantiate(fox_text_prefab, spawn1.position - text_offset, Quaternion.identity);
  yield WaitForSeconds(3);
