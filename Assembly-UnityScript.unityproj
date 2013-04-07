@@ -48,9 +48,11 @@
      <Compile Include="Assets\PlatformCameraManager.js" />
      <Compile Include="Assets\Player Scripts\CharacterMotor.js" />
      <Compile Include="Assets\Player Scripts\PlatformInputController.js" />
+     <Compile Include="Assets\Player Scripts\PlayerCameraRespawnEffect.js" />
      <Compile Include="Assets\Player Scripts\SideScroller.js" />
      <Compile Include="Assets\PushObject.js" />
      <Compile Include="Assets\Sprites\AnimatedSprite.js" />
+     <Compile Include="Assets\StalactiteTrap.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FollowTransform.js" />

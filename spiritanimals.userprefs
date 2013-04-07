@@ -1,14 +1,35 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FoxSpawnScript.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\PlayerCameraRespawnEffect.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="3" Column="16" />
-      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="354" Column="34" />
-      <File FileName="Assets\Player Scripts\PlatformInputController.js" Line="15" Column="45" />
-      <File FileName="Assets\Player Scripts\PlayerAnimation.cs" Line="53" Column="22" />
-      <File FileName="Assets\Player Scripts\Menu.cs" Line="9" Column="1" />
-      <File FileName="Assets\FoxSpawnScript.js" Line="36" Column="15" />
+      <File FileName="Assets\StalactiteTrap.js" Line="77" Column="52" />
+      <File FileName="Assets\Player Scripts\PlayerCameraRespawnEffect.js" Line="23" Column="23" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-UnityScript" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Player Scripts" expanded="True">
+                <Node name="PlayerCameraRespawnEffect.js" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+          <Node name="Assembly-UnityScript-firstpass" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Standard Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="General Scripts" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
