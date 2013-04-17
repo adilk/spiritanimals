@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: 3e5892e7d7929774bb76ce50a1ca0175
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Arc01_Group03 bridge_by_popa_3d
+    100002: bridge_by_popa_3d_Arc05
+    100004: bridge_by_popa_3d_Arc06
+    100006: bridge_by_popa_3d_Arc09 Group01
+    100008: bridge_by_popa_3d_Box02
+    100010: bridge_by_popa_3d_Box04
+    100012: bridge_by_popa_3d_Box05
+    100014: bridge_by_popa_3d_Box08
+    100016: bridge_by_popa_3d_Box09
+    100018: bridge_by_popa_3d_Box10
+    100020: bridge_by_popa_3d_Box11
+    100022: bridge_by_popa_3d_Box12
+    100024: bridge_by_popa_3d_Box15
+    100026: bridge_by_popa_3d_Box16
+    100028: bridge_by_popa_3d_Box17
+    100030: bridge_by_popa_3d_Box20
+    100032: bridge_by_popa_3d_Box21
+    100034: bridge_by_popa_3d_Box22
+    100036: bridge_by_popa_3d_Box23
+    100038: bridge_by_popa_3d_Box24
+    100040: bridge_by_popa_3d_Box25
+    100042: bridge_by_popa_3d_Group01 Box39
+    100044: bridge_by_popa_3d_Group01 Box40
+    100046: bridge_by_popa_3d_Group01 Box41
+    100048: bridge_by_popa_3d_Group01 Box42
+    100050: Group03_bridge_by_popa_3d Box26
+    100052: Group03_bridge_by_popa_3d Box27
+    100054: Group03_bridge_by_popa_3d Box31
+    100056: Group03_bridge_by_popa_3d Box34
+    100058: //RootNode
+    400000: Arc01_Group03 bridge_by_popa_3d
+    400002: bridge_by_popa_3d_Arc05
+    400004: bridge_by_popa_3d_Arc06
+    400006: bridge_by_popa_3d_Arc09 Group01
+    400008: bridge_by_popa_3d_Box02
+    400010: bridge_by_popa_3d_Box04
+    400012: bridge_by_popa_3d_Box05
+    400014: bridge_by_popa_3d_Box08
+    400016: bridge_by_popa_3d_Box09
+    400018: bridge_by_popa_3d_Box10
+    400020: bridge_by_popa_3d_Box11
+    400022: bridge_by_popa_3d_Box12
+    400024: bridge_by_popa_3d_Box15
+    400026: bridge_by_popa_3d_Box16
+    400028: bridge_by_popa_3d_Box17
+    400030: bridge_by_popa_3d_Box20
+    400032: bridge_by_popa_3d_Box21
+    400034: bridge_by_popa_3d_Box22
+    400036: bridge_by_popa_3d_Box23
+    400038: bridge_by_popa_3d_Box24
+    400040: bridge_by_popa_3d_Box25
+    400042: bridge_by_popa_3d_Group01 Box39
+    400044: bridge_by_popa_3d_Group01 Box40
+    400046: bridge_by_popa_3d_Group01 Box41
+    400048: bridge_by_popa_3d_Group01 Box42
+    400050: Group03_bridge_by_popa_3d Box26
+    400052: Group03_bridge_by_popa_3d Box27
+    400054: Group03_bridge_by_popa_3d Box31
+    400056: Group03_bridge_by_popa_3d Box34
+    400058: //RootNode
+    2300000: Arc01_Group03 bridge_by_popa_3d
+    2300002: bridge_by_popa_3d_Arc05
+    2300004: bridge_by_popa_3d_Arc06
+    2300006: bridge_by_popa_3d_Arc09 Group01
+    2300008: bridge_by_popa_3d_Box02
+    2300010: bridge_by_popa_3d_Box04
+    2300012: bridge_by_popa_3d_Box05
+    2300014: bridge_by_popa_3d_Box08
+    2300016: bridge_by_popa_3d_Box09
+    2300018: bridge_by_popa_3d_Box10
+    2300020: bridge_by_popa_3d_Box11
+    2300022: bridge_by_popa_3d_Box12
+    2300024: bridge_by_popa_3d_Box15
+    2300026: bridge_by_popa_3d_Box16
+    2300028: bridge_by_popa_3d_Box17
+    2300030: bridge_by_popa_3d_Box20
+    2300032: bridge_by_popa_3d_Box21
+    2300034: bridge_by_popa_3d_Box22
+    2300036: bridge_by_popa_3d_Box23
+    2300038: bridge_by_popa_3d_Box24
+    2300040: bridge_by_popa_3d_Box25
+    2300042: bridge_by_popa_3d_Group01 Box39
+    2300044: bridge_by_popa_3d_Group01 Box40
+    2300046: bridge_by_popa_3d_Group01 Box41
+    2300048: bridge_by_popa_3d_Group01 Box42
+    2300050: Group03_bridge_by_popa_3d Box26
+    2300052: Group03_bridge_by_popa_3d Box27
+    2300054: Group03_bridge_by_popa_3d Box31
+    2300056: Group03_bridge_by_popa_3d Box34
+    3300000: Arc01_Group03 bridge_by_popa_3d
+    3300002: bridge_by_popa_3d_Arc05
+    3300004: bridge_by_popa_3d_Arc06
+    3300006: bridge_by_popa_3d_Arc09 Group01
+    3300008: bridge_by_popa_3d_Box02
+    3300010: bridge_by_popa_3d_Box04
+    3300012: bridge_by_popa_3d_Box05
+    3300014: bridge_by_popa_3d_Box08
+    3300016: bridge_by_popa_3d_Box09
+    3300018: bridge_by_popa_3d_Box10
+    3300020: bridge_by_popa_3d_Box11
+    3300022: bridge_by_popa_3d_Box12
+    3300024: bridge_by_popa_3d_Box15
+    3300026: bridge_by_popa_3d_Box16
+    3300028: bridge_by_popa_3d_Box17
+    3300030: bridge_by_popa_3d_Box20
+    3300032: bridge_by_popa_3d_Box21
+    3300034: bridge_by_popa_3d_Box22
+    3300036: bridge_by_popa_3d_Box23
+    3300038: bridge_by_popa_3d_Box24
+    3300040: bridge_by_popa_3d_Box25
+    3300042: bridge_by_popa_3d_Group01 Box39
+    3300044: bridge_by_popa_3d_Group01 Box40
+    3300046: bridge_by_popa_3d_Group01 Box41
+    3300048: bridge_by_popa_3d_Group01 Box42
+    3300050: Group03_bridge_by_popa_3d Box26
+    3300052: Group03_bridge_by_popa_3d Box27
+    3300054: Group03_bridge_by_popa_3d Box31
+    3300056: Group03_bridge_by_popa_3d Box34
+    4300000: Arc01_Group03 bridge_by_popa_3d
+    4300002: bridge_by_popa_3d_Arc05
+    4300004: bridge_by_popa_3d_Arc06
+    4300006: bridge_by_popa_3d_Arc09 Group01
+    4300008: bridge_by_popa_3d_Box02
+    4300010: bridge_by_popa_3d_Box04
+    4300012: bridge_by_popa_3d_Box05
+    4300014: bridge_by_popa_3d_Box08
+    4300016: bridge_by_popa_3d_Box09
+    4300018: bridge_by_popa_3d_Box10
+    4300020: bridge_by_popa_3d_Box11
+    4300022: bridge_by_popa_3d_Box12
+    4300024: bridge_by_popa_3d_Box15
+    4300026: bridge_by_popa_3d_Box16
+    4300028: bridge_by_popa_3d_Box17
+    4300030: bridge_by_popa_3d_Box20
+    4300032: bridge_by_popa_3d_Box21
+    4300034: bridge_by_popa_3d_Box22
+    4300036: bridge_by_popa_3d_Box23
+    4300038: bridge_by_popa_3d_Box24
+    4300040: bridge_by_popa_3d_Box25
+    4300042: bridge_by_popa_3d_Group01 Box39
+    4300044: bridge_by_popa_3d_Group01 Box40
+    4300046: bridge_by_popa_3d_Group01 Box41
+    4300048: bridge_by_popa_3d_Group01 Box42
+    4300050: Group03_bridge_by_popa_3d Box26
+    4300052: Group03_bridge_by_popa_3d Box27
+    4300054: Group03_bridge_by_popa_3d Box31
+    4300056: Group03_bridge_by_popa_3d Box34
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
