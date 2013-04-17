@@ -4,11 +4,14 @@
 
 // Does this script currently respond to input?
 var canControl : boolean = true;
-private var pulling : boolean;
-private var movable : GameObject;
-private var myJoint : ConfigurableJoint;
 var useFixedUpdate : boolean = true;
-//private var rockAgainstWall : boolean = false;
+//variables used for pushing and pulling movable objects
+private var pulling : boolean;
+private var movableObject : GameObject;
+private var movableScript : MovableObject;
+private var myJoint : ConfigurableJoint;
+private enum directions { None, Left, Right };
+private var direction : int = directions.None;
 
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
@@ -186,16 +189,15 @@ function Awake () {
 private function UpdateFunction () {
 	if((pulling && !Input.GetButton("Fire1")) || (pulling && IsJumping()))
 		{
-		
-//			movable.transform.parent = null;
-//			movable.rigidbody.isKinematic = false;
-//			movable = null;
-//			Destroy(GetComponent(HingeJoint));
+			movableObject = null;
+			movableScript = null;
 			pulling = false;
 			Physics.IgnoreCollision(this.collider, myJoint.connectedBody.collider, false);
 			Destroy(GetComponent(ConfigurableJoint));
 			Destroy (myJoint);
+			direction = directions.None;
 		}
+		
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
@@ -356,53 +358,70 @@ function Update () {
 
 }
 
+//Returns if we are pushing a movable object into a wall/unmovable object
+private function ShouldCharacterStayInPlace()
+{
+	return movableScript != null && movableScript.isTouchingUnmovable() && //object we are pushing is touching unmovable object
+			// (pushing right when object is on right side of character) || (pushing left when object is on left side of character)
+			((inputMoveDirection.z > 0 && direction == directions.Right) || (inputMoveDirection.z < 0 && direction == directions.Left));
+}
+
 private function ApplyInputVelocityChange (velocity : Vector3) {	
 	if (!canControl)
 		inputMoveDirection = Vector3.zero;
 	
-	// Find desired velocity
-	var desiredVelocity : Vector3;
-	if (grounded && TooSteep()) {
-		// The direction we're sliding in
-		desiredVelocity = Vector3(0, groundNormal.y, groundNormal.z).normalized;
-		// Find the input movement direction projected onto the sliding direction
-		var projectedMoveDir = Vector3.Project(inputMoveDirection, desiredVelocity);
-		// Add the sliding direction, the spped control, and the sideways control vectors
-		desiredVelocity = desiredVelocity + projectedMoveDir * sliding.speedControl + (inputMoveDirection - projectedMoveDir) * sliding.sidewaysControl;
-		// Multiply with the sliding speed
-		desiredVelocity *= sliding.slidingSpeed;
+
+	if (!ShouldCharacterStayInPlace())
+	{
+		//the character is allowed to move, therefore do calculations
+		// Find desired velocity
+		var desiredVelocity : Vector3;
+		if (grounded && TooSteep()) {
+			// The direction we're sliding in
+			desiredVelocity = Vector3(0, groundNormal.y, groundNormal.z).normalized;
+			// Find the input movement direction projected onto the sliding direction
+			var projectedMoveDir = Vector3.Project(inputMoveDirection, desiredVelocity);
+			// Add the sliding direction, the spped control, and the sideways control vectors
+			desiredVelocity = desiredVelocity + projectedMoveDir * sliding.speedControl + (inputMoveDirection - projectedMoveDir) * sliding.sidewaysControl;
+			// Multiply with the sliding speed
+			desiredVelocity *= sliding.slidingSpeed;
+		}
+		else
+			desiredVelocity = GetDesiredHorizontalVelocity();
+		
+		if (movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer) {
+			desiredVelocity += movement.frameVelocity;
+			desiredVelocity.y = 0;
+		}
+		
+		if (grounded)
+			desiredVelocity = AdjustGroundVelocityToNormal(desiredVelocity, groundNormal);
+		else
+			velocity.y = 0;
+		
+		// Enforce max velocity change
+		var maxVelocityChange : float = GetMaxAcceleration(grounded) * Time.deltaTime;
+		var velocityChangeVector : Vector3 = (desiredVelocity - velocity);
+		if (velocityChangeVector.sqrMagnitude > maxVelocityChange * maxVelocityChange) {
+			velocityChangeVector = velocityChangeVector.normalized * maxVelocityChange;
+		}
+		// If we're in the air and don't have control, don't apply any velocity change at all.
+		// If we're on the ground and don't have control we do apply it - it will correspond to friction.
+		if (grounded || canControl)
+			velocity += velocityChangeVector;
+		
+		if (grounded) {
+			// When going uphill, the CharacterController will automatically move up by the needed amount.
+			// Not moving it upwards manually prevent risk of lifting off from the ground.
+			// When going downhill, DO move down manually, as gravity is not enough on steep hills.
+			velocity.y = Mathf.Min(velocity.y, 0);
+		}
 	}
 	else
-		desiredVelocity = GetDesiredHorizontalVelocity();
-	
-	if (movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer) {
-		desiredVelocity += movement.frameVelocity;
-		desiredVelocity.y = 0;
+	{
+		// the character should not move, therefore set velocity to zero
+		velocity = Vector3.zero;
 	}
-	
-	if (grounded)
-		desiredVelocity = AdjustGroundVelocityToNormal(desiredVelocity, groundNormal);
-	else
-		velocity.y = 0;
-	
-	// Enforce max velocity change
-	var maxVelocityChange : float = GetMaxAcceleration(grounded) * Time.deltaTime;
-	var velocityChangeVector : Vector3 = (desiredVelocity - velocity);
-	if (velocityChangeVector.sqrMagnitude > maxVelocityChange * maxVelocityChange) {
-		velocityChangeVector = velocityChangeVector.normalized * maxVelocityChange;
-	}
-	// If we're in the air and don't have control, don't apply any velocity change at all.
-	// If we're on the ground and don't have control we do apply it - it will correspond to friction.
-	if (grounded || canControl)
-		velocity += velocityChangeVector;
-	
-	if (grounded) {
-		// When going uphill, the CharacterController will automatically move up by the needed amount.
-		// Not moving it upwards manually prevent risk of lifting off from the ground.
-		// When going downhill, DO move down manually, as gravity is not enough on steep hills.
-		velocity.y = Mathf.Min(velocity.y, 0);
-	}
-	
 	return velocity;
 }
 
@@ -479,31 +498,19 @@ private function ApplyGravityAndJumping (velocity : Vector3) {
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit) {
-	
-	
-	if(!IsJumping() && !myJoint && Input.GetButton("Fire1") && hit.gameObject.tag == "Movable" && (hit.controller.collisionFlags & CollisionFlags.Sides)){
-//			print(hit.gameObject.tag);
-//			movable = hit.gameObject;
-//			movable.transform.parent = this.transform;
-//			movable.rigidbody.isKinematic = true;
+			
+		if(!IsJumping() && !myJoint && Input.GetButton("Fire1") && hit.gameObject.tag == "Movable" && (hit.controller.collisionFlags != CollisionFlags.Above && hit.controller.collisionFlags != CollisionFlags.Below)){
+			
 			pulling = true;
-//			gameObject.AddComponent ("HingeJoint");
-//			myJoint = GetComponent(HingeJoint) ;
-//			var limits : JointLimits;
-//   			limits.min = 0;
-//    		limits.minBounce = 0;
-//    		limits.max = 5;
-//    		limits.maxBounce = 0;
-//    		myJoint.limits = limits;
-    		
     
-    
+    		movableObject = hit.gameObject;
+    		movableScript = movableObject.GetComponent(MovableObject); 
     		gameObject.AddComponent ("ConfigurableJoint");
 			myJoint = GetComponent(ConfigurableJoint) ;
 			myJoint.connectedBody = hit.rigidbody; 
 			
 			myJoint.anchor = new Vector3(0, 0, 0);
-			myJoint.targetPosition = new Vector3(0, 0, 0);
+			myJoint.targetPosition = new Vector3(0, 0, 10);
 			
 			myJoint.xMotion = ConfigurableJointMotion.Locked;
 			myJoint.yMotion = ConfigurableJointMotion.Free;
@@ -518,27 +525,21 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 			myJoint.zDrive.positionDamper = 10;
 			myJoint.zDrive.maximumForce = 20;
 			
-			
-//			var limits : SoftJointLimit;
-//			myJoint.linearLimit.limit = 5;
-
-//			var myJointDrive : JointDrive = new JointDrive();
-//    	    myJointDrive.mode = JointDriveMode.Position;
-//    	    myJointDrive.positionSpring = 45;
-//    	    myJointDrive.maximumForce = 45;
-//    	    myJoint.rotationDriveMode = RotationDriveMode.XYAndZ;
-//    	    myJoint.angularYZDrive = myJointDrive;
-    	    
-    	    
-//    	    var drive : JointDrive = JointDrive();
-//      	  	drive.positionSpring = 50;
-//      	  	drive.mode = JointDriveMode.Position;
-//        
-//      		myJoint.yDrive = drive;
-      	  
-        
-			
 			Physics.IgnoreCollision(this.collider, hit.collider);
+			
+			//set direction to the direction the movable object is in relation to the character
+			var relativePosition = transform.InverseTransformPoint(hit.point);
+
+	    	if (relativePosition.z > 0) 
+	    	{
+	    		//object is to the right
+	    		direction = directions.Right;
+ 		   	} 
+ 		   	else 
+ 		   	{
+ 		   		//object is to the left
+			    direction = directions.Left;
+ 			}			
 		}
 
 	else if (hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0) {

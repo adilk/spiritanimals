@@ -1,37 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\PlayerCameraRespawnEffect.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
     <Files>
-      <File FileName="Assets\StalactiteTrap.js" Line="77" Column="52" />
-      <File FileName="Assets\Player Scripts\PlayerCameraRespawnEffect.js" Line="23" Column="23" />
+      <File FileName="Assets\Player Scripts\PlayerCameraRespawnEffect.js" Line="1" Column="1" />
+      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="500" Column="10" />
+      <File FileName="Assets\Standard Assets\Scripts\General Scripts\MovableObject.js" Line="23" Column="46" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Standard Assets" expanded="True">
-                <Node name="Water (Basic)" expanded="True">
-                  <Node name="Sources" expanded="True">
-                    <Node name="Scripts" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
           <Node name="Assembly-UnityScript" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Player Scripts" expanded="True">
-                <Node name="PlayerCameraRespawnEffect.js" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-UnityScript-firstpass" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Standard Assets" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="General Scripts" expanded="True" />
-                </Node>
+                <Node name="CharacterMotor.js" selected="True" />
               </Node>
             </Node>
           </Node>
