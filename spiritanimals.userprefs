@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\MovableLog.js">
     <Files>
-      <File FileName="Assets\Sprites\AnimatedSprite.js" Line="1" Column="1" />
-      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="705" Column="55" />
-      <File FileName="Assets\Player Scripts\PlayerCameraRespawnEffect.js" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Scripts\General Scripts\MovableObject.js" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\Joystick.js" Line="1" Column="1" />
+      <File FileName="Assets\Player Scripts\MovableLog.js" Line="24" Column="25" />
+      <File FileName="Assets\Standard Assets\Scripts\General Scripts\MovableObject.js" Line="6" Column="4" />
+      <File FileName="Assets\Standard Assets\Scripts\General Scripts\DeathZone.js" Line="31" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +12,17 @@
           <Node name="Assembly-UnityScript" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Player Scripts" expanded="True">
-                <Node name="CharacterMotor.js" selected="True" />
+                <Node name="MovableLog.js" selected="True" />
+              </Node>
+              <Node name="Sprites" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-UnityScript-firstpass" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Standard Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="General Scripts" expanded="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
