@@ -152,7 +152,7 @@ ModelImporter:
     4300056: Group03_bridge_by_popa_3d Box34
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
