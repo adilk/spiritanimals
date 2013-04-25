@@ -19,7 +19,6 @@ private var startTime : float;
 private var startGrabPos : Vector3;
 private var endGrabPos : Vector3;
 
-
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
 

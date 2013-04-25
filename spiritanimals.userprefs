@@ -1,23 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
     <Files>
-      <File FileName="Assets\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" Line="18" Column="1" />
-      <File FileName="Assets\Player Scripts\MovableLog.js" Line="24" Column="25" />
+      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="20" Column="34" />
+      <File FileName="Assets\Player Scripts\MovableLog.js" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\Scripts\General Scripts\MovableObject.js" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\Scripts\General Scripts\DeathZone.js" Line="1" Column="1" />
+      <File FileName="Assets\Player Scripts\PlayerAnimation.cs" Line="39" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Player Scripts" expanded="True" />
+            </Node>
+          </Node>
           <Node name="Assembly-CSharp-firstpass" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Standard Assets" expanded="True">
                 <Node name="Water (Basic)" expanded="True">
                   <Node name="Sources" expanded="True">
-                    <Node name="Scripts" expanded="True">
-                      <Node name="WaterSimple.cs" selected="True" />
-                    </Node>
+                    <Node name="Scripts" expanded="True" />
                   </Node>
                 </Node>
               </Node>
@@ -25,7 +29,9 @@
           </Node>
           <Node name="Assembly-UnityScript" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Player Scripts" expanded="True" />
+              <Node name="Player Scripts" expanded="True">
+                <Node name="CharacterMotor.js" selected="True" />
+              </Node>
               <Node name="Sprites" expanded="True" />
             </Node>
           </Node>
