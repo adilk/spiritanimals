@@ -5,6 +5,8 @@
 // Does this script currently respond to input?
 var canControl : boolean = true;
 var useFixedUpdate : boolean = true;
+var beginning : boolean = true;
+var beginninganim : boolean = true;
 //variables used for pushing and pulling movable objects
 private var pulling : boolean;
 private var grabbing : boolean;
@@ -15,6 +17,7 @@ private var myJoint : ConfigurableJoint;
 private enum directions { None, Left, Right };
 private var direction : int = directions.None;
 
+private var endStartPoint : Vector3;
 private var startTime : float;
 private var startGrabPos : Vector3;
 private var endGrabPos : Vector3;
@@ -190,6 +193,15 @@ private var controller : CharacterController;
 function Awake () {
 	controller = GetComponent (CharacterController);
 	tr = transform;
+	canControl = false;
+	if (Application.loadedLevelName == "forestscene")
+	{
+		endStartPoint = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 3);
+	}
+	else
+	{
+		endStartPoint = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 10);
+	}
 }
 
 private function UpdateFunction () {
@@ -374,6 +386,22 @@ function FixedUpdate () {
 }
 
 function Update () {
+	if (beginninganim)
+	{
+		SendMessage("PlayRunAnimation", SendMessageOptions.DontRequireReceiver);
+		beginninganim = false;
+	}
+	if (beginning)
+		{
+			rigidbody.position = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 0.08);
+			if (rigidbody.position.z >= endStartPoint.z)
+			{
+				canControl = true;
+				beginning = false;
+			}
+			tr.position = rigidbody.position;
+			return;
+		}
 	if (!useFixedUpdate)
 		UpdateFunction();
 	//send info to get animations played 	

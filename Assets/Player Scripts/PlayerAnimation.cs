@@ -53,6 +53,12 @@ public class PlayerAnimation : MonoBehaviour {
 		isGrounded = false;
 	}
 	
+	void PlayRunAnimation()
+	{
+		SendMessage("PlayAnimation", runAnimName);
+		audio.Play();
+	}
+	
 	void OnExternalVelocity () {
 		
 	}

@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Player Scripts\CaveStart.cs" />
      <Compile Include="Assets\Player Scripts\Forest2Cave.cs" />
      <Compile Include="Assets\Player Scripts\Menu.cs" />
      <Compile Include="Assets\Player Scripts\PlayerAnimation.cs" />
