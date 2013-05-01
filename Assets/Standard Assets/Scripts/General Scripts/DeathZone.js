@@ -1,5 +1,6 @@
 #pragma strict
 
+var triggerSound : AudioSource;
 var waypoint :Transform[];
 var log : Transform;
 var startPos : Transform;
@@ -27,6 +28,10 @@ function OnTriggerEnter (victim : Collider) {
 	if ( victim.collider.tag == "Player") {
 		var element : int = Random.Range(0, waypoint.length);
 		victim.transform.position = waypoint[element].position;
+		if (triggerSound != null)
+		{
+			triggerSound.Play();
+		}
 		if (log != null && startPos != null) {
 			yield MoveObject(log, log.position, startPos.position, 1.0);
 		}
