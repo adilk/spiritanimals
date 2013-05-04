@@ -21,6 +21,8 @@ private var endStartPoint : Vector3;
 private var startTime : float;
 private var startGrabPos : Vector3;
 private var endGrabPos : Vector3;
+private var midGrabPos : Vector3;
+private var reachedMidPoint : boolean = false;
 
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
@@ -207,19 +209,39 @@ function Awake () {
 private function UpdateFunction () {
 	if (grabbing && Input.GetButton("Fire1"))
 	{
-        var distCovered = (Time.time - startTime) * 2.0;
-        
-        // Fraction of journey completed = current distance divided by total distance.
-        var fracJourney = distCovered / Vector3.Distance(startGrabPos, endGrabPos);
-        
-        // Set our position as a fraction of the distance between the markers.
-        rigidbody.position = Vector3.Lerp(startGrabPos, endGrabPos, fracJourney);
-        
-        if ( rigidbody.position == endGrabPos )
-        {
-        	grabbing = false;
-        }
-        tr.position = rigidbody.position;
+		var distanceCovered : float = 0.0;
+		var fracJourney : float = 0.0;
+		
+		if (reachedMidPoint)
+		{
+	        distCovered = (Time.time - startTime) * 2.0;
+	        
+	        // Fraction of journey completed = current distance divided by total distance.
+	        fracJourney = distCovered / Vector3.Distance(midGrabPos, endGrabPos);
+	        
+	        // Set our position as a fraction of the distance between the markers.
+	        rigidbody.position = Vector3.Lerp(midGrabPos, endGrabPos, fracJourney);
+	        
+	        if ( rigidbody.position == endGrabPos )
+	        {
+	        	grabbing = false;
+	        	reachedMidPoint = false;
+	        }
+		}
+		else
+		{
+			distCovered = (Time.time - startTime) * 2.0;
+	        fracJourney = distCovered / Vector3.Distance(startGrabPos, midGrabPos);
+	        
+	        rigidbody.position = Vector3.Lerp(startGrabPos, midGrabPos, fracJourney);
+	        
+	        if ( rigidbody.position == midGrabPos )
+	        {
+	        	startTime = Time.time;
+	        	reachedMidPoint = true;
+	        }
+		}
+	    tr.position = rigidbody.position;
 		return;
 	}
 	
@@ -600,6 +622,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 		grabbing = true;
 		endGrabPos = hit.transform.TransformPoint(hit.gameObject.GetComponent(GrabbableObject).endPoint);
 		startGrabPos = this.transform.position;
+		midGrabPos = new Vector3(startGrabPos.x, endGrabPos.y, startGrabPos.z);
 		startTime = Time.time;
 	}
 
