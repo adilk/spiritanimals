@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour {
 	public string runAnimName = "";
 	public string jumpAnimName = "";
 	public string fallAnimName = "";
+	public string grabAnimName = "";
 	
 	private bool idle = false;
 	private bool isGrounded = false;
@@ -19,11 +20,15 @@ public class PlayerAnimation : MonoBehaviour {
 	
 	
 	void OnFall () {
-		SendMessage("PlayAnimation", fallAnimName);
+		animation.Play(fallAnimName);
+	}
+	
+	void OnGrab() {
+		animation.Play (grabAnimName);
 	}
 	
 	void OnLand () {
-		SendMessage("PlayAnimationInReverse", jumpAnimName);
+		animation.Play(runAnimName);
 		isGrounded = true;
 	}
 	
@@ -34,13 +39,13 @@ public class PlayerAnimation : MonoBehaviour {
 	void GetVelocity (Vector3 velocity) {
 		if ( velocity.magnitude < 0.1 && !idle )
 		{
-			SendMessage("PlayAnimation", idleAnimName);
+			animation.Play(idleAnimName);
 			idle = true;
 			audio.Stop();
 		}
 		else if ( velocity.magnitude > 0.1 && idle && isGrounded )
 		{
-			SendMessage("PlayAnimation", runAnimName);
+			animation.Play(runAnimName);
 			idle = false;
 			audio.Play();
 			
@@ -48,15 +53,9 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 	
 	void OnJump () {
-		SendMessage("PlayAnimation", jumpAnimName);
+		animation.Play(jumpAnimName);
 		audio.Stop();
 		isGrounded = false;
-	}
-	
-	void PlayRunAnimation()
-	{
-		SendMessage("PlayAnimation", runAnimName);
-		audio.Play();
 	}
 	
 	void OnExternalVelocity () {

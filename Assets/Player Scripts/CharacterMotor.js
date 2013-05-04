@@ -5,8 +5,6 @@
 // Does this script currently respond to input?
 var canControl : boolean = true;
 var useFixedUpdate : boolean = true;
-var beginning : boolean = true;
-var beginninganim : boolean = true;
 //variables used for pushing and pulling movable objects
 private var pulling : boolean;
 private var grabbing : boolean;
@@ -17,12 +15,9 @@ private var myJoint : ConfigurableJoint;
 private enum directions { None, Left, Right };
 private var direction : int = directions.None;
 
-private var endStartPoint : Vector3;
 private var startTime : float;
 private var startGrabPos : Vector3;
 private var endGrabPos : Vector3;
-private var midGrabPos : Vector3;
-private var reachedMidPoint : boolean = false;
 
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
@@ -195,53 +190,24 @@ private var controller : CharacterController;
 function Awake () {
 	controller = GetComponent (CharacterController);
 	tr = transform;
-	canControl = false;
-	if (Application.loadedLevelName == "forestscene")
-	{
-		endStartPoint = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 3);
-	}
-	else
-	{
-		endStartPoint = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 10);
-	}
 }
 
 private function UpdateFunction () {
 	if (grabbing && Input.GetButton("Fire1"))
 	{
-		var distanceCovered : float = 0.0;
-		var fracJourney : float = 0.0;
-		
-		if (reachedMidPoint)
-		{
-	        distCovered = (Time.time - startTime) * 2.0;
-	        
-	        // Fraction of journey completed = current distance divided by total distance.
-	        fracJourney = distCovered / Vector3.Distance(midGrabPos, endGrabPos);
-	        
-	        // Set our position as a fraction of the distance between the markers.
-	        rigidbody.position = Vector3.Lerp(midGrabPos, endGrabPos, fracJourney);
-	        
-	        if ( rigidbody.position == endGrabPos )
-	        {
-	        	grabbing = false;
-	        	reachedMidPoint = false;
-	        }
-		}
-		else
-		{
-			distCovered = (Time.time - startTime) * 2.0;
-	        fracJourney = distCovered / Vector3.Distance(startGrabPos, midGrabPos);
-	        
-	        rigidbody.position = Vector3.Lerp(startGrabPos, midGrabPos, fracJourney);
-	        
-	        if ( rigidbody.position == midGrabPos )
-	        {
-	        	startTime = Time.time;
-	        	reachedMidPoint = true;
-	        }
-		}
-	    tr.position = rigidbody.position;
+        var distCovered = (Time.time - startTime) * 2.0;
+        
+        // Fraction of journey completed = current distance divided by total distance.
+        var fracJourney = distCovered / Vector3.Distance(startGrabPos, endGrabPos);
+        
+        // Set our position as a fraction of the distance between the markers.
+        rigidbody.position = Vector3.Lerp(startGrabPos, endGrabPos, fracJourney);
+        
+        if ( rigidbody.position == endGrabPos )
+        {
+        	grabbing = false;
+        }
+        tr.position = rigidbody.position;
 		return;
 	}
 	
@@ -356,7 +322,7 @@ private function UpdateFunction () {
 			movement.velocity += movingPlatform.platformVelocity;
 		}
 
-		SendMessage("OnFall", SendMessageOptions.DontRequireReceiver);
+		BroadcastMessage("OnFall", SendMessageOptions.DontRequireReceiver);
 		// We pushed the character down to ensure it would stay on the ground if there was any.
 		// But there wasn't so now we cancel the downwards offset to make the fall smoother.
 		tr.position += pushDownOffset * Vector3.up;
@@ -367,7 +333,7 @@ private function UpdateFunction () {
 		jumping.jumping = false;
 		SubtractNewPlatformVelocity();
 
-		SendMessage("OnLand", SendMessageOptions.DontRequireReceiver);
+		BroadcastMessage("OnLand", SendMessageOptions.DontRequireReceiver);
 	}
 
 	// Moving platforms support
@@ -408,27 +374,11 @@ function FixedUpdate () {
 }
 
 function Update () {
-	if (beginninganim)
-	{
-		SendMessage("PlayRunAnimation", SendMessageOptions.DontRequireReceiver);
-		beginninganim = false;
-	}
-	if (beginning)
-		{
-			rigidbody.position = new Vector3(rigidbody.position.x, rigidbody.position.y, rigidbody.position.z + 0.08);
-			if (rigidbody.position.z >= endStartPoint.z)
-			{
-				canControl = true;
-				beginning = false;
-			}
-			tr.position = rigidbody.position;
-			return;
-		}
 	if (!useFixedUpdate)
 		UpdateFunction();
 	//send info to get animations played 	
-	gameObject.SendMessage("GetGrounded",grounded,SendMessageOptions.DontRequireReceiver); 
-	gameObject.SendMessage("GetVelocity",movement.velocity, SendMessageOptions.DontRequireReceiver ); 
+	gameObject.BroadcastMessage("GetGrounded",grounded,SendMessageOptions.DontRequireReceiver); 
+	gameObject.BroadcastMessage("GetVelocity",movement.velocity, SendMessageOptions.DontRequireReceiver ); 
 
 }
 
@@ -562,7 +512,7 @@ private function ApplyGravityAndJumping (velocity : Vector3) {
 				velocity += movingPlatform.platformVelocity;
 			}
 
-			SendMessage("OnJump", SendMessageOptions.DontRequireReceiver);
+			BroadcastMessage("OnJump", SendMessageOptions.DontRequireReceiver);
 		}
 		else {
 			jumping.holdingJumpButton = false;
@@ -620,9 +570,9 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 	else if(IsJumping() && !myJoint && Input.GetButton("Fire1") && hit.gameObject.tag == "Grabbable" && (hit.controller.collisionFlags & CollisionFlags.Sides))
 	{
 		grabbing = true;
+		BroadcastMessage("OnGrab", SendMessageOptions.DontRequireReceiver);
 		endGrabPos = hit.transform.TransformPoint(hit.gameObject.GetComponent(GrabbableObject).endPoint);
 		startGrabPos = this.transform.position;
-		midGrabPos = new Vector3(startGrabPos.x, endGrabPos.y, startGrabPos.z);
 		startTime = Time.time;
 	}
 
