@@ -1,30 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Attempt.shader">
     <Files>
-      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="199" Column="99" />
+      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="199" Column="9" />
       <File FileName="Assets\Player Scripts\PlayerAnimation.cs" Line="1" Column="1" />
       <File FileName="Assets\Player Scripts\PlatformInputController.js" Line="1" Column="1" />
       <File FileName="Assets\Sprites\AnimatedSprite.js" Line="1" Column="1" />
-      <File FileName="Assets\Player Scripts\Forest2Cave.cs" Line="15" Column="3" />
-      <File FileName="Assets\Player Scripts\CaveStart.cs" Line="22" Column="54" />
+      <File FileName="Assets\Player Scripts\Forest2Cave.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Scripts\CaveStart.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Attempt.shader" Line="23" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Player Scripts" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-UnityScript" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Player Scripts" expanded="True">
-                <Node name="CharacterMotor.js" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
