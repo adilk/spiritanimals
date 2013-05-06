@@ -17,5 +17,6 @@ function Update () {
     var hasStone : boolean = script.has_stone;
     if (hasStone) {
         this.transform.position = tunnel.position;
+        Camera.mainCamera.transform.position.y = this.transform.position.y + 8.7950641;
     }
 }

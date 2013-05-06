@@ -13,6 +13,11 @@ var deathzone : Transform;
 private var script : GameLogicScript;
 
 function Start () {
+	if (!first_time && has_stone) {
+		GameObject.Destroy(bear_water.gameObject);
+		GameObject.Destroy(deathzone.gameObject);
+		GameObject.Destroy(bear_rocks.gameObject);
+	}
 }
 
 function OnTriggerEnter (other : Collider) {
@@ -22,18 +27,14 @@ function OnTriggerEnter (other : Collider) {
 		yield WaitForSeconds(5);
 		Destroy(text_instance.gameObject);
 		player.GetComponent(CharacterMotor).canControl = true;
-		bear_water.active = false;
-		deathzone.active = false;
+		GameObject.Destroy(bear_water.gameObject);
+		GameObject.Destroy(deathzone.gameObject);
 		first_time = false;
-	} else if (!first_time && has_stone) {
-		bear_rocks.active = false;
-	} else {
-		//do nothing
 	}
 }
 
 function OnLevelWasLoaded (level : int) {
     script = GameObject.Find("GameLogic").GetComponent("GameLogicScript");
     has_stone = script.has_stone;
-    first_time = script.first_time;
+    first_time = script.first_time; 
 }
