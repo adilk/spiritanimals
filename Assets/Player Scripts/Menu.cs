@@ -48,7 +48,7 @@ public class Menu : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), 
 			menuTexture, ScaleMode.ScaleToFit, true, camera.aspect);
 		
-		if (Input.GetMouseButton(0))
+		if (Input.GetMouseButton(0) && isPlaying == false)
 		{
 			fade = true;
 			audio.Play();
