@@ -20,6 +20,8 @@ private var startTime : float;
 private var startGrabPos : Vector3;
 private var endGrabPos : Vector3;
 
+private var currentDirection: float;
+
 // For the next variables, @System.NonSerialized tells Unity to not serialize the variable or show it in the inspector view.
 // Very handy for organization!
 
@@ -194,22 +196,31 @@ function Awake () {
 }
 
 private function UpdateFunction () {
-	if (grabbing && Input.GetButton("Fire1"))
+	
+	currentDirection = transform.forward.z;
+	if (grabbing)
 	{
-        var distCovered = (Time.time - startTime) * 2.0;
-        
-        // Fraction of journey completed = current distance divided by total distance.
-        var fracJourney = distCovered / Vector3.Distance(startGrabPos, endGrabPos);
-        
-        // Set our position as a fraction of the distance between the markers.
-        rigidbody.position = Vector3.Lerp(startGrabPos, endGrabPos, fracJourney);
-        
-        if ( rigidbody.position == endGrabPos )
-        {
-        	grabbing = false;
-        }
-        tr.position = rigidbody.position;
-		return;
+		if ( Input.GetButton("Fire1"))
+		{
+	        var distCovered = (Time.time - startTime) * 2.0;
+	        
+	        // Fraction of journey completed = current distance divided by total distance.
+	        var fracJourney = distCovered / Vector3.Distance(startGrabPos, endGrabPos);
+	        
+	        // Set our position as a fraction of the distance between the markers.
+	        rigidbody.position = Vector3.Lerp(startGrabPos, endGrabPos, fracJourney);
+	        
+	        if ( rigidbody.position == endGrabPos )
+	        {
+	        	grabbing = false;
+	        }
+	        tr.position = rigidbody.position;
+			return;
+		}
+		else
+		{
+			grabbing = false;
+		}
 	}
 	
 	if((pulling && !Input.GetButton("Fire1")) || (pulling && IsJumping()))
@@ -347,6 +358,18 @@ private function UpdateFunction () {
 		// Support moving platform rotation as well:
         movingPlatform.activeGlobalRotation = tr.rotation;
         movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
+	}
+	if (pulling)
+	{
+	
+		if (currentDirection > 0)
+		{
+			transform.localEulerAngles.y = 0;
+		}
+		else
+		{
+			transform.localEulerAngles.y = 180;
+		}
 	}
 	tr.position.x = 0;
 }

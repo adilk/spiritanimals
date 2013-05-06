@@ -8,6 +8,7 @@ var spawn1 : Transform;
 var spawn_distance : int = 1;
 var end : Transform;
 private var foxInstance : Transform;
+private var started : boolean = false;
 //var fox_text_prefab : Transform;
 //var text_offset : Vector3;
 
@@ -18,13 +19,17 @@ Debug.LogError("Player is null");
 }
  
 function Update () {
-if (spawning == false) {
-MoveObject(foxInstance, foxInstance.position, end.position, 3.0);
-}
+if (spawning == false && started == false) {
+	started = true;
+		MoveObject(foxInstance, foxInstance.position, end.position, 3.0);
+	}
 }
  
 function OnTriggerEnter (other : Collider) {
-	Spawn();
+	if (spawning)
+	{
+		Spawn();
+	}
 }
 function Spawn(){
  

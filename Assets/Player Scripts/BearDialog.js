@@ -24,7 +24,7 @@ function OnTriggerEnter (other : Collider) {
 		player.GetComponent(CharacterMotor).canControl = true;
 		bear_water.active = false;
 		deathzone.active = false;
-		script.first_time = false;
+		first_time = false;
 	} else if (!first_time && has_stone) {
 		bear_rocks.active = false;
 	} else {
