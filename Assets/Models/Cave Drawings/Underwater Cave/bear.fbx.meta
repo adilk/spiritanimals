@@ -39,7 +39,7 @@ ModelImporter:
     400032: Lamp
     4300000: Cube
     7400000: Default Take
-    7400002: ArmatureAction
+    7400002: b_walk
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cube
@@ -56,7 +56,7 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: ArmatureAction
+    - name: b_walk
       takeName: ArmatureAction
       firstFrame: -1
       lastFrame: 47

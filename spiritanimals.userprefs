@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Scripts\CharacterMotor.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\magicstone.js">
     <Files>
-      <File FileName="Assets\Player Scripts\Menu.cs" Line="51" Column="53" />
-      <File FileName="Assets\magicstone.js" Line="15" Column="23" />
-      <File FileName="Assets\Standard Assets\Scripts\General Scripts\DeathZone.js" Line="16" Column="20" />
-      <File FileName="Assets\Player Scripts\PlayerAnimation.cs" Line="33" Column="21" />
-      <File FileName="Assets\Player Scripts\CharacterMotor.js" Line="573" Column="17" />
+      <File FileName="Assets\magicstone.js" Line="14" Column="2" />
+      <File FileName="Assets\TriggerMany.js" Line="24" Column="57" />
+      <File FileName="Assets\TriggerTurtle2.js" Line="16" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

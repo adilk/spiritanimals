@@ -46,7 +46,7 @@ ModelImporter:
     4300000: Cube
     4300002: Circle
     7400000: Default Take
-    7400002: action01
+    7400002: fly
     9500000: //RootNode
     11100000: //RootNode
     13700000: Cube
@@ -63,7 +63,7 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: action01
+    - name: fly
       takeName: action01
       firstFrame: -1
       lastFrame: 34
