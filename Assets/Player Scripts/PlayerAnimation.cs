@@ -13,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour {
 	public string jumpAnimName = "";
 	public string fallAnimName = "";
 	public string grabAnimName = "";
+	public AudioSource audio1;
 	
 	private bool idle = false;
 	private bool isGrounded = false;
@@ -28,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour {
 	}
 	
 	void OnLand () {
+		audio1.Play();
 		animation.Play(runAnimName);
 		isGrounded = true;
 	}

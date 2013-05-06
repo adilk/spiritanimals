@@ -14,6 +14,7 @@ private var movableScript : MovableObject;
 private var myJoint : ConfigurableJoint;
 private enum directions { None, Left, Right };
 private var direction : int = directions.None;
+var audio1 : AudioSource;
 
 private var startTime : float;
 private var startGrabPos : Vector3;
@@ -569,6 +570,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 		
 	else if(IsJumping() && !myJoint && Input.GetButton("Fire1") && hit.gameObject.tag == "Grabbable" && (hit.controller.collisionFlags & CollisionFlags.Sides))
 	{
+		audio1.Play();
 		grabbing = true;
 		BroadcastMessage("OnGrab", SendMessageOptions.DontRequireReceiver);
 		endGrabPos = hit.transform.TransformPoint(hit.gameObject.GetComponent(GrabbableObject).endPoint);
