@@ -6,8 +6,10 @@ var player : Transform;
 var prefab : Transform;
 var spawn1 : Transform;
 var spawn_distance : int = 1;
-var fox_text_prefab : Transform;
-var text_offset : Vector3;
+var end : Transform;
+private var foxInstance : Transform;
+//var fox_text_prefab : Transform;
+//var text_offset : Vector3;
 
 function Start() {
 if (player == null) {
@@ -16,19 +18,21 @@ Debug.LogError("Player is null");
 }
  
 function Update () {
-	if (spawning && Vector3.Distance(player.transform.position, spawn1.position) < spawn_distance) {
-		Spawn();
-	}
+if (spawning == false) {
+MoveObject(foxInstance, foxInstance.position, end.position, 3.0);
+}
 }
  
+function OnTriggerEnter (other : Collider) {
+	Spawn();
+}
 function Spawn(){
  
 
  //set spawning to true, to stop timer counting in the Update function
- spawning = false;
  
  //create the object at point of the location variable
- var foxInstance : Transform = Instantiate(prefab, spawn1.position, Quaternion.identity);
+ foxInstance = Instantiate(prefab, spawn1.position, Quaternion.identity);
  
  // Disable player movement
  player.GetComponent(CharacterMotor).canControl = false;
@@ -36,17 +40,24 @@ function Spawn(){
  audio.Play();
  
  // Fox Dialouge
- var text_instance : Transform = Instantiate(fox_text_prefab, spawn1.position - text_offset, Quaternion.identity);
- yield WaitForSeconds(3);
- Destroy(text_instance.gameObject);
+ //var text_instance : Transform = Instantiate(fox_text_prefab, spawn1.position - text_offset, Quaternion.identity);
+ yield WaitForSeconds(1);
+ foxInstance.transform.Rotate(Vector3.up * 180);
+ spawning = false;
+ //Destroy(text_instance.gameObject);
  // Fox Movement
- 
- // Delete the fox
- 
- Destroy(foxInstance.gameObject);
- 
- 
- // Re-enable player movement
- player.GetComponent(CharacterMotor).canControl = true;
 
+}
+
+function MoveObject (thisTransform : Transform, startPos : Vector3, endPos : Vector3, time : float) {
+    var i = 0.0;
+    var rate = 1.0/time;
+    while (i < 1.0) {
+        i += Time.deltaTime * rate;
+        thisTransform.position = Vector3.Lerp(startPos, endPos, i);
+        yield; 
+    }
+    Destroy(foxInstance.gameObject);
+     // Re-enable player movement
+ 	player.GetComponent(CharacterMotor).canControl = true;
 }
