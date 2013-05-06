@@ -7,18 +7,31 @@ using System.Collections;
  */
 [RequireComponent (typeof (Camera))]
 [RequireComponent (typeof(AudioSource))]
+[RequireComponent (typeof(AudioSource))]
 public class Menu : MonoBehaviour {
+	
+	public MovieTexture theMovie;
+	public AudioSource audio;
+	public AudioSource introVid; 
+	public AudioSource startMusic;
 	public Texture menuTexture;
 	public Texture whiteTexture;
+	private float movieTimer;
 	private bool fade = false;
 	private float alphaFadeValue = 0.0f;
+	private bool isPlaying = false; 
 
 	// Use this for initialization
 	void Start () {
+		startMusic.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(theMovie.isPlaying)
+		{
+			movieTimer += Time.deltaTime; 
+		}
 	}
 	
 	void OnGUI() {
@@ -50,7 +63,21 @@ public class Menu : MonoBehaviour {
 		
 		if ( alphaFadeValue >= 0.85 )
 		{
-			Application.LoadLevel("forestscene");
+			startMusic.Stop();
+			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), theMovie);
+			
+			if(isPlaying == false)
+			{
+				isPlaying = true;
+				introVid.Play();
+				theMovie.Play();
+			}
+				
+			if(theMovie.duration < movieTimer)
+			{
+				theMovie.Stop();
+				Application.LoadLevel("forestscene");
+			}
 		}
 	}
 }
